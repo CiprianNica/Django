@@ -1,0 +1,4 @@
+venv/
+agenda/__pycache__
+agenda/contact/__pycache__
+agenda/todo/__pycache__
