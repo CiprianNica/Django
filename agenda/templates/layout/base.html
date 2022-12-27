@@ -6,14 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestor personal | {% block 'title' %}{% endblock %}</title>
-    <link rel="stylesheet" type='text/css' href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     {% block 'style' %}{% endblock %}
 </head>
 <body>
     {% include 'layout/partials/menu.html' %}
     <main>
-        {% block 'content' %}{% endblock %}
+        {% block 'content' %}
+        {% endblock %}
     </main>
     {% block 'scripts' %}{% endblock %}
 </body>
-</html>
+</html> 
