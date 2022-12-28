@@ -3,6 +3,11 @@ from .models import Contact
 from .forms import ContactForm
 from django.contrib import messages
 
+""" def index(request):
+    contacts = Contact.objects.all()
+    contexto = {'contacts':contacts}
+    return render(request, 'contact/index.html', contexto)
+ """
 def index(request):
     #contacts = Contact.objects.all()
     contacts = Contact.objects.filter(name__contains=request.GET.get('search',''))
