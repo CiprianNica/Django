@@ -3,21 +3,21 @@ from .models import Contact
 from .forms import ContactForm
 from django.contrib import messages
 
-""" def index(request):
-    contacts = Contact.objects.all()
-    contexto = {'contacts':contacts}
-    return render(request, 'contact/index.html', contexto)
- """
 def index(request):
     #contacts = Contact.objects.all()
     contacts = Contact.objects.filter(name__contains=request.GET.get('search',''))
     context = {'contacts':contacts}
     return render(request, 'contact/index.html', context)
 
-def views(request, id):
+def view(request, id):
     contact = Contact.objects.get(id=id)
-    context = {'contact' : contact}
-    return render (request, 'contact/detail.html', context)
+    context = {'contact':contact}
+    return render(request, 'contact/detail.html', context)
+
+def delete(request, id):
+    contact = Contact.objects.get(id=id)
+    context = {'contact':contact}
+    return render(request, 'contact/index.html', context)
 
 def edit(request, id):
     contact = Contact.objects.get(id=id)
@@ -28,7 +28,7 @@ def edit(request, id):
             'form': form,
             'id': id
             }
-        return render(request, 'contact/create.html', context)
+        return render(request, 'contact/edit.html', context)
     
     if request.method == 'POST':
         form = ContactForm(request.POST, instance=contact)
@@ -38,4 +38,4 @@ def edit(request, id):
             'id': id,
         }
         messages.success(request, 'Contacto actualizado.')
-        return render(request, 'contact/create.html', context)
+        return render(request, 'contact/edit.html', context)
