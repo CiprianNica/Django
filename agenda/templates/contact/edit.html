@@ -1,4 +1,5 @@
 {% extends 'layout/base.html' %}
+
 {% block 'title' %} Contactos Edit {% endblock %}
 
 {% block 'style' %}
@@ -7,13 +8,26 @@
 {% endblock %}
 
 {% block 'content' %}
-    {% csrf_token %}
-    <form>
-        <table>
-            {{ form.as_table }}
-        </table>
-        <div class="btn-wrapper">
-            <input type="submit" value="Enviar" class="btn-send"/>
-        </div>
-    </form>
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="alert-succes"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <span class="aux-btns">
+        <a href="{% url 'contact' %}">Back</a>
+        <a href="{% url 'contact'%}"> Ver todos</a>
+    </span>
+        <form action="{% url 'contact_edit' id=id %}" method="POST">
+            {% csrf_token %}
+            <table>
+                {{ form.as_table }}
+            </table>
+            <div class="btn-wrapper">
+                <input type="submit" value="Enviar" class="btn-send"/>
+            </div>
+        </form>
 {% endblock %}

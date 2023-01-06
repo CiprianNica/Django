@@ -1,6 +1,6 @@
 {% extends 'layout/base.html' %}
 
-{% block 'title' %} Borrar contacto {% endblock %}
+{% block 'title' %} Crear contacto {% endblock %}
 
 {% block 'style' %}
     {% load static %}
@@ -9,25 +9,25 @@
 
 {% block 'content' %}
 
-    {% if messages %}
+    {% comment %} {% if messages %}
         <ul class="messages">
             {% for message in messages %}
                 <li{% if message.tags %} class="alert-succes"{% endif %}>{{ message }}</li>
             {% endfor %}
         </ul>
-    {% endif %}
+    {% endif %} {% endcomment %}
 
     <span class="aux-btns">
         <a href="{% url 'contact' %}">Back</a>
         <a href="{% url 'contact'%}"> Ver todos</a>
     </span>
-        <form action="{% url 'contact_delete' id=id %}" method="POST">
+        <form action="{% url 'contact_create' %}" method="POST">
             {% csrf_token %}
             <table>
                 {{ form.as_table }}
             </table>
             <div class="btn-wrapper">
-                <input type="submit" value="DELETE" class="btn-send"/>
+                <input type="submit" value="Enviar" class="btn-send"/>
             </div>
         </form>
 {% endblock %}
