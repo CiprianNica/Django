@@ -1,6 +1,6 @@
 {% extends 'layout/base.html' %}
 
-{% block 'title' %} Contactos Edit {% endblock %}
+{% block 'title' %} Tareas edit {% endblock %}
 
 {% block 'style' %}
     {% load static %}
@@ -10,18 +10,17 @@
 {% block 'content' %}
 
     {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <li{% if message.tags %} class="alert-succes"{% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="alert-succes"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
 
     <span class="aux-btns">
-        <a href="{% url 'contact' %}">Back</a>
-        <a href="{% url 'contact'%}"> Ver todos</a>
+        <a href="{% url 'todo' %}">Ver todos</a>
     </span>
-    <form action="{% url 'contact_edit' id=id %}" method="POST">
+    <form action="{% url 'todo_edit' id=id %}" method="POST">
         {% csrf_token %}
         <table>
             {{ form.as_table }}
@@ -30,4 +29,5 @@
             <input type="submit" value="Enviar" class="btn-send"/>
         </div>
     </form>
+
 {% endblock %}
