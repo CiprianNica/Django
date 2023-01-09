@@ -3,7 +3,7 @@
 {% block 'title' %} Contactos {% endblock %}
 
 {% block 'content' %}
-
+    <h1>Contactos</h1>
     {% if messages %}
             <ul class="messages">
                 {% for message in messages %}
@@ -12,10 +12,9 @@
             </ul>
         {% endif %}
 
-    <form class="search" action="{% url 'contact' %}" method="GET">
-        <input type="text" name="search" class="search-bar" placeholder="Buscar contacto...">
-        <input type="submit" value="BUSCAR" class="search-btn">
-    </form>
+    {% include 'contact/partials/search.html' %}
+    {% include 'contact/partials/by_letter.html' %}
+    
     <span class="aux-btns">
         <a href="{% url 'contact' %}">Ver todos</a>
         <a href="{% url 'contact_create' %}">Añadir</a>

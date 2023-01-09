@@ -3,6 +3,7 @@
 {% block 'title' %} Tareas {% endblock %}
 
 {% block 'content' %}
+    <h1>Tareas</h1>
 
     {% if messages %}
             <ul class="messages">
@@ -12,10 +13,9 @@
             </ul>
         {% endif %}
 
-    <form class="search" action="{% url 'todo' %}" method="GET">
-        <input type="text" name="search" class="search-bar" placeholder="Buscar tarea...">
-        <input type="submit" value="BUSCAR" class="search-btn">
-    </form>
+    {% include 'todo/partials/search.html' %}
+    {% include 'todo/partials/by_letter.html' %}
+
     <span class="aux-btns">
         <a href="{% url 'todo' %}">Ver todos</a>
         <a href="{% url 'todo_create' %}">Añadir</a>
